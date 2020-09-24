@@ -1,10 +1,11 @@
 // import { query } from 'express'
 import { Post } from '../entities/Post'
-import { MyContext } from 'src/types'
+import { MyContext } from '../types'
 import { Resolver, Query, Ctx, Arg, Int, Mutation } from 'type-graphql'
 
 
 //both using graphQL types AND ts types
+//looks like the graphQL type will be inferred according to the typescript type?
 
 @Resolver()
 export class PostResolver {

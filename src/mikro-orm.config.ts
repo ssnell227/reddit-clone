@@ -5,6 +5,7 @@ const { POSTGRES_PASSWORD } = process.env
 import { MikroORM } from '@mikro-orm/core'
 import { __prod__ } from "./constants";
 import { Post } from "./entities/Post";
+import { User } from './entities/User';
 import path from 'path'
 
 export default {
@@ -12,7 +13,7 @@ export default {
         path: path.join(__dirname, './migrations'), // path.join adds the parent location of the current file to the second argument
         pattern: /^[\w-]+\d+\.[tj]s$/
     },
-    entities: [Post],
+    entities: [Post, User],
     dbName: 'lireddit',
     user: 'postgres',
     password: POSTGRES_PASSWORD,

@@ -8,13 +8,14 @@ dotenv_1.default.config();
 const { POSTGRES_PASSWORD } = process.env;
 const constants_1 = require("./constants");
 const Post_1 = require("./entities/Post");
+const User_1 = require("./entities/User");
 const path_1 = __importDefault(require("path"));
 exports.default = {
     migrations: {
         path: path_1.default.join(__dirname, './migrations'),
         pattern: /^[\w-]+\d+\.[tj]s$/
     },
-    entities: [Post_1.Post],
+    entities: [Post_1.Post, User_1.User],
     dbName: 'lireddit',
     user: 'postgres',
     password: POSTGRES_PASSWORD,
