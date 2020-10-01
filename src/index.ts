@@ -16,7 +16,7 @@ import connectRedis from 'connect-redis'
 
 import redis from 'redis'
 import session from 'express-session'
-import { MyContext } from './types'
+// import { MyContext } from './types'
 
 
 
@@ -36,7 +36,7 @@ const main = async () => {
             //disable touch is on because the tutorial leaves no expiration on the cookie, so there's no need to have touch on.  Otherwise, it's important to have touch on to ensure that users' sessions stay current even if they don't change any data
             store: new RedisStore({ 
                 client: redisClient, 
-                disableTouch:true
+                disableTouch:true,
             }),
             cookie: {
                 maxAge: 1000 * 60 * 24 * 365,
@@ -46,6 +46,7 @@ const main = async () => {
             },
             secret: 'replace this later',
             resave: false,
+            saveUninitialized: false,
         })
     )
 
@@ -54,7 +55,7 @@ const main = async () => {
             resolvers: [HelloResolver, PostResolver, UserResolver],
             validate: false
         }),
-        context: ({req, res}): MyContext => ({ em: orm.em, req, res }) //context is available to all resolvers so that they can access em object
+        context: ({req, res}) => ({ em: orm.em, req, res }) //context is available to all resolvers so that they can access em object
     })
 
     apolloServer.applyMiddleware({ app })

@@ -38,7 +38,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         name: 'qid',
         store: new RedisStore({
             client: redisClient,
-            disableTouch: true
+            disableTouch: true,
         }),
         cookie: {
             maxAge: 1000 * 60 * 24 * 365,
@@ -48,6 +48,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         },
         secret: 'replace this later',
         resave: false,
+        saveUninitialized: false,
     }));
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: yield type_graphql_1.buildSchema({
